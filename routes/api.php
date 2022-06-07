@@ -9,6 +9,7 @@ Route::prefix('v1')
             Route::get('/', 'all');
             Route::get('/{id}', 'find');
             Route::put('/', 'update');
+            Route::post('/', 'create');
         });
     });
 
