@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_profile', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('state', function (Blueprint $table) {
+            $table->smallIncrements('id');
+
+            $table->string('code', 2)->nullable(false)->unique();
+            $table->string('title', 32)->nullable(false)->unique();
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_profile');
+        Schema::dropIfExists('state');
     }
 };
