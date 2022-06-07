@@ -25,8 +25,6 @@ return new class extends Migration
             $table->text('img')->nullable(false)->unique();
 
             $table->unsignedSmallInteger('city_id')->nullable(false);
-
-            $table->timestamps();
         });
 
         Schema::table('profile', function (Blueprint $table) {
