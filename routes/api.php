@@ -7,6 +7,7 @@ Route::prefix('v1')
     ->group(function () {
         Route::prefix('profile')->controller(ProfileController::class)->group(function () {
             Route::get('/', 'all');
+            Route::get('/{id}', 'find');
         });
     });
 
