@@ -4,6 +4,8 @@ namespace App\Models\Constants;
 
 class ProfileConstants
 {
+    const SUCCESSFUL_OPERATION_MESSAGE = 'Operation has been completed.';
+
     const PROFILE_ATTRIBS_TO_RETURN = [
         'profile.id',
         'profile.img',
