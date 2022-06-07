@@ -31,4 +31,9 @@ class ProfileService
 
         $this->profileRepository->update($data, $id);
     }
+
+    public function create(array $data)
+    {
+        $this->profileRepository->insert($data);
+    }
 }
