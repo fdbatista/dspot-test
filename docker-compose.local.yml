@@ -5,7 +5,7 @@ services:
   dspot-api:
     container_name: dspot-api
     tty: true
-    image: bitnami/laravel:8.6.10
+    image: bitnami/laravel:9.1.8
     ports:
       - 8083:8000
     networks:
