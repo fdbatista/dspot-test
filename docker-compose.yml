@@ -2,12 +2,12 @@ version: '3'
 
 services:
 
-    caol-api:
-        container_name: caol-api
+    dspot-api:
+        container_name: dspot-api
         tty: true
         image: bitnami/laravel:9.1.8
         networks:
-            - caol-network
+            - dspot-network
         volumes:
             - ./:/app
         env_file:
@@ -19,12 +19,12 @@ services:
             - DB_USERNAME=${DB_USERNAME}
             - DB_PASSWORD=${DB_PASSWORD}
 
-    caol-db:
+    dspot-db:
         image: mariadb:10.5.2
-        container_name: caol-db
+        container_name: dspot-db
         restart: always
         networks:
-            - caol-network
+            - dspot-network
         env_file:
             - ./.env
         volumes:
@@ -36,9 +36,9 @@ services:
             MYSQL_USER: ${DB_USERNAME}
             MYSQL_PASSWORD: ${DB_PASSWORD}
 
-    caol-pma:
+    dspot-pma:
         image: phpmyadmin/phpmyadmin
-        container_name: caol-pma
+        container_name: dspot-pma
         restart: always
         env_file:
             - .env
@@ -49,10 +49,10 @@ services:
         volumes:
             - ./docker/pma/php.conf/php.ini:/usr/local/etc/php/php.ini
         depends_on:
-            - caol-db
+            - dspot-db
         networks:
-            - caol-network
+            - dspot-network
 
 networks:
-    caol-network:
+    dspot-network:
         external: true
