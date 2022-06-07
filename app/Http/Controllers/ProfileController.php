@@ -20,4 +20,11 @@ class ProfileController extends Controller
 
         return $this->success($data);
     }
+
+    public function find(int $id): JsonResponse
+    {
+        $data = $this->profileService->find($id);
+
+        return $this->success($data);
+    }
 }
