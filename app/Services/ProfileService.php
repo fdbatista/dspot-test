@@ -24,4 +24,11 @@ class ProfileService
     {
         return $this->profileRepository->find($id);
     }
+
+    public function update(array $data)
+    {
+        $id = $data['id'];
+
+        $this->profileRepository->update($data, $id);
+    }
 }
