@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileCreateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Services\ProfileService;
 use Illuminate\Http\JsonResponse;
@@ -34,6 +35,15 @@ class ProfileController extends Controller
         $data = $request->all(['id', 'phone', 'first_name', 'last_name', 'address', 'img', 'zip_code', 'city_id']);
 
         $this->profileService->update($data);
+
+        return $this->success();
+    }
+
+    public function create(ProfileCreateRequest $request): JsonResponse
+    {
+        $data = $request->all(['phone', 'first_name', 'last_name', 'address', 'img', 'zip_code', 'city_id']);
+
+        $this->profileService->create($data);
 
         return $this->success();
     }
