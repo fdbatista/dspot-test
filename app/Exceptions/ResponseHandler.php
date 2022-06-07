@@ -7,27 +7,17 @@ use Throwable;
 
 trait ResponseHandler
 {
-    protected function success($data): JsonResponse
+    protected function success(mixed $data): JsonResponse
     {
-        $responseData = [
-            'success' => true,
-            'data' => $data,
-        ];
-
         return response()
-            ->json($responseData)
+            ->json($data)
             ->setStatusCode(200);
     }
 
     protected function error(Throwable $exception, int $httpCode = 400): JsonResponse
     {
-        $responseData = [
-            'success' => false,
-            'error' => $exception->getMessage(),
-        ];
-
         return response()
-            ->json($responseData)
+            ->json($exception->getMessage())
             ->setStatusCode($httpCode);
     }
 }
