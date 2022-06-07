@@ -2,9 +2,12 @@
 
 namespace App\Repositories;
 
+use App\Models\Constants\ProfileConstants;
 use App\Models\Entities\Profile;
 use App\Repositories\_Core\Abstraction\AbstractRepository;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use JetBrains\PhpStorm\Pure;
 
 class ProfileRepository extends AbstractRepository
@@ -17,13 +20,25 @@ class ProfileRepository extends AbstractRepository
 
     public function all(): Collection
     {
+        $query = $this->getModelQuery();
+
+        return $query->get();
+    }
+
+    public function find($id): Model|Builder|null
+    {
+        $query = $this->getModelQuery();
+
+        return $query
+            ->where('profile.id', $id)
+            ->first();
+    }
+
+    private function getModelQuery(): Builder
+    {
         return $this->model::query()
-            /*->join('permissao_sistema', 'cao_usuario.co_usuario', '=', 'permissao_sistema.co_usuario')
-            ->where('permissao_sistema.co_sistema', 1)
-            ->where('permissao_sistema.in_ativo', 1)
-            ->whereIn('permissao_sistema.co_tipo_usuario', UserConstants::CONSULTANT_TYPES)
-            ->orderBy('cao_usuario.no_usuario')
-            ->select(['cao_usuario.co_usuario', 'cao_usuario.no_usuario', 'cao_usuario.ds_endereco', 'cao_usuario.no_email', 'cao_usuario.nu_telefone'])*/
-            ->get();
+            ->join('city', 'profile.city_id', '=', 'city.id')
+            ->join('state', 'city.state_id', '=', 'state.id')
+            ->select(ProfileConstants::PROFILE_ATTRIBS_TO_RETURN);
     }
 }
