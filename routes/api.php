@@ -8,6 +8,7 @@ Route::prefix('v1')
         Route::prefix('profile')->controller(ProfileController::class)->group(function () {
             Route::get('/', 'all');
             Route::get('/{id}', 'find');
+            Route::put('/', 'update');
         });
     });
 
