@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\FriendsRepository;
+use App\Utils\GraphUtil;
 
 class FriendsService
 {
@@ -13,5 +14,12 @@ class FriendsService
     public function findFriends(int $profileId): array
     {
         return $this->friendsRepository->findFriends($profileId);
+    }
+
+    public function findShorterPath(int $origin, int $destination): array
+    {
+        $graph = $this->friendsRepository->getFriendsConnections();
+
+        return GraphUtil::findMinimumHops($graph, $origin, $destination);
     }
 }
