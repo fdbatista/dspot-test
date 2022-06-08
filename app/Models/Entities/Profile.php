@@ -6,7 +6,6 @@
 
 namespace App\Models\Entities;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,12 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $last_name
  * @property string $phone
  * @property string $address
- * @property int $zip_code
+ * @property string $zip_code
  * @property bool $is_available
  * @property string $img
  * @property int $city_id
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
  * 
  * @property City $city
  * @property Collection|Friend[] $friends
@@ -33,10 +30,10 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
 	protected $table = 'profile';
+	public $timestamps = false;
 	protected $dateFormat = 'd-m-Y H:i:s';
 
 	protected $casts = [
-		'zip_code' => 'int',
 		'is_available' => 'bool',
 		'city_id' => 'int'
 	];

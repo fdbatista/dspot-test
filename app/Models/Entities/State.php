@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  * Class State
  * 
  * @property int $id
- * @property string $code
  * @property string $title
  * 
  * @property Collection|City[] $cities
@@ -27,7 +26,6 @@ class State extends Model
 	protected $dateFormat = 'd-m-Y H:i:s';
 
 	protected $fillable = [
-		'code',
 		'title'
 	];
 
