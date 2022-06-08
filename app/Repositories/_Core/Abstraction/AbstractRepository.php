@@ -68,4 +68,9 @@ abstract class AbstractRepository implements RepositoryInterface
     {
         return $this->model::where($criteria)->get();
     }
+
+    public function whereIn(string $column, array $ids): Builder
+    {
+        return $this->model::query()->whereIn($column, $ids);
+    }
 }
