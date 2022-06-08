@@ -7,6 +7,7 @@
 namespace App\Models\Entities;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * 
  * @property City $city
+ * @property Collection|Friend[] $friends
  *
  * @package App\Models\Entities
  */
@@ -53,5 +55,10 @@ class Profile extends Model
 	public function city()
 	{
 		return $this->belongsTo(City::class);
+	}
+
+	public function friends()
+	{
+		return $this->hasMany(Friend::class);
 	}
 }
