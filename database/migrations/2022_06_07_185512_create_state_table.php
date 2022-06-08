@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('state', function (Blueprint $table) {
             $table->smallIncrements('id');
 
-            $table->string('code', 2)->nullable(false)->unique();
             $table->string('title', 32)->nullable(false)->unique();
         });
     }
