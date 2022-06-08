@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('address', 64)->nullable(false);
             $table->integer('zip_code')->nullable(false);
             $table->boolean('is_available')->nullable(false)->default(true);
-            $table->text('img')->nullable(false)->unique();
+            $table->text('img')->nullable(false);
 
             $table->unsignedSmallInteger('city_id')->nullable(false);
         });
