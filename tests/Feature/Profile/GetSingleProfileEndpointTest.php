@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Profile;
 
 use App\Models\Entities\Profile;
 use App\Repositories\ProfileRepository;

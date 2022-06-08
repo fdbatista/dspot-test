@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,5 +12,9 @@ Route::prefix('v1')
             Route::put('/', 'update');
             Route::post('/', 'create');
         });
-    });
 
+        Route::prefix('friends')->controller(FriendsController::class)->group(function () {
+            Route::get('/{id}', 'findFriends');
+            Route::get('/path/{origin}/{destination}', 'findShorterPath');
+        });
+    });

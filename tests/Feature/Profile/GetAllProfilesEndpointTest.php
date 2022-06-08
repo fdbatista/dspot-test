@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Profile;
 
 use App\Repositories\ProfileRepository;
 use Illuminate\Database\Eloquent\Collection;

@@ -33,6 +33,8 @@ return new class extends Migration
                 ->on('city')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+
+            $table->unique(['first_name', 'last_name']);
         });
     }
 
