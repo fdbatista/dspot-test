@@ -6,11 +6,8 @@ use App\Repositories\FriendsRepository;
 
 class FriendsService
 {
-    private FriendsRepository $friendsRepository;
-
-    public function __construct(FriendsRepository $friendsRepository)
+    public function __construct(private FriendsRepository $friendsRepository)
     {
-        $this->friendsRepository = $friendsRepository;
     }
 
     public function findFriends(int $profileId): array
