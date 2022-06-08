@@ -15,5 +15,6 @@ Route::prefix('v1')
 
         Route::prefix('friends')->controller(FriendsController::class)->group(function () {
             Route::get('/{id}', 'findFriends');
+            Route::get('/path/{origin}/{destination}', 'findShorterPath');
         });
     });
