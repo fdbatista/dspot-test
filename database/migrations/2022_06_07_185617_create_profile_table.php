@@ -34,7 +34,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->unique(['first_name', 'last_name']);
+            $table->unique(['first_name', 'last_name', 'phone']);
         });
     }
 
