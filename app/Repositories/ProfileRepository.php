@@ -41,4 +41,15 @@ class ProfileRepository extends AbstractRepository
             ->join('state', 'city.state_id', '=', 'state.id')
             ->select(ProfileConstants::PROFILE_ATTRIBS_TO_RETURN);
     }
+
+    public function findModels(array $ids): array
+    {
+        return $this->whereIn('id', $ids)
+            ->select(['id', 'first_name', 'last_name'])
+            ->get()
+            ->map(function ($item) {
+                return $item->first_name . ' ' . $item->last_name . ' - ' . $item->id;
+            })
+            ->toArray();
+    }
 }
