@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('city', function (Blueprint $table) {
             $table->smallIncrements('id');
 
-            $table->string('title', 32)->nullable(false)->unique();
+            $table->string('title', 32)->nullable(false);
             $table->unsignedSmallInteger('state_id')->nullable(false);
         });
 
@@ -25,6 +25,8 @@ return new class extends Migration {
                 ->on('state')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+
+            $table->unique(['title', 'state_id']);
         });
     }
 
