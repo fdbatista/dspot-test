@@ -12,4 +12,3 @@ Route::prefix('v1')
             Route::post('/', 'create');
         });
     });
-
