@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('last_name', 32)->nullable(false);
             $table->string('phone', 16)->nullable(false);
             $table->string('address', 64)->nullable(false);
-            $table->integer('zip_code')->nullable(false);
+            $table->string('zip_code', 16)->nullable(false);
             $table->boolean('is_available')->nullable(false)->default(true);
             $table->text('img')->nullable(false);
 
