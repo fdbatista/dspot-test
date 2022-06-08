@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Services\FriendsService;
+use App\Services\ProfileService;
 use Illuminate\Http\JsonResponse;
 
 class FriendsController extends Controller
 {
-    private FriendsService $friendsService;
-
-    public function __construct(FriendsService $friendsService)
+    public function __construct(
+        private FriendsService $friendsService,
+        private ProfileService $profileService
+    )
     {
-        $this->friendsService = $friendsService;
     }
 
     public function findFriends(int $profileId): JsonResponse
