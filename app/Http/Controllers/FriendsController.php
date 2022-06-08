@@ -11,7 +11,6 @@ class FriendsController extends Controller
     public function __construct(
         private FriendsService $friendsService,
         private ProfileService $profileService,
-        private ProfileFactory $profileFactory,
     )
     {
     }
