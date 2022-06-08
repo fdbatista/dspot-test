@@ -74,4 +74,9 @@ abstract class AbstractRepository implements RepositoryInterface
     {
         return $this->model::query()->whereIn($column, $ids);
     }
+
+    public function deleteAll()
+    {
+        $this->model::query()->delete();
+    }
 }
