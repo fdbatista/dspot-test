@@ -2,6 +2,7 @@
 
 namespace App\Repositories\_Core\Abstraction;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,52 +22,52 @@ abstract class AbstractRepository implements RepositoryInterface
 
     public function insert(array $data): void
     {
-        $this->model::insert($data);
+        $this->model::query()->insert($data);
     }
 
     public function update(array $data, int $id): void
     {
-        $this->model::where('id', $id)->update($data);
+        $this->model::query()->where('id', $id)->update($data);
     }
 
     public function delete(int $id)
     {
-        $this->model::find($id)->delete();
+        $this->model::query()->find($id)->delete();
     }
 
-    public function get(int $id)
+    public function get(int $id): Model|Collection|Builder|array|null
     {
-        return $this->model::find($id);
+        return $this->model::query()->find($id);
     }
 
-    public function exists(array $criteria)
+    public function exists(array $criteria): bool
     {
-        return $this->model::where($criteria)->exists();
+        return $this->model::query()->where($criteria)->exists();
     }
 
-    public function updateOrCreate(array $compareAttribs, array $fillAttribs)
+    public function updateOrCreate(array $compareAttribs, array $fillAttribs): Model|Builder
     {
-        return $this->model::updateOrCreate($compareAttribs, $fillAttribs);
+        return $this->model::query()->updateOrCreate($compareAttribs, $fillAttribs);
     }
 
     public function firstOrCreate(array $compareAttribs, array $fillAttribs = []): Model
     {
-        return $this->model::firstOrCreate($compareAttribs, $fillAttribs);
+        return $this->model::query()->firstOrCreate($compareAttribs, $fillAttribs);
     }
 
-    public function firstOrFail(array $data)
+    public function firstOrFail(array $data): Model|Builder
     {
-        return $this->model::firstOrFail($data);
+        return $this->model::query()->firstOrFail($data);
     }
 
-    public function findOne(array $criteria)
+    public function findOne(array $criteria): Model|Builder|null
     {
-        return $this->model::where($criteria)->first();
+        return $this->model::query()->where($criteria)->first();
     }
 
-    public function findAll(array $criteria)
+    public function findAll(array $criteria): Collection|array
     {
-        return $this->model::where($criteria)->get();
+        return $this->model::query()->where($criteria)->get();
     }
 
     public function whereIn(string $column, array $ids): Builder
