@@ -39,4 +39,24 @@ class FriendsRepository extends AbstractRepository
             ->values()
             ->toArray();
     }
+
+    public function getFriendsConnections(): array
+    {
+        $queryForIdOnProfile = DB::table($this->tableName)
+            ->select(['profile_id', 'friend_id']);
+
+        $queryForIdOnFriend = DB::table($this->tableName)
+            ->select(['friend_id as profile_id', 'profile_id as friend_id']);
+
+        return $queryForIdOnProfile->unionAll($queryForIdOnFriend)
+            ->orderBy('profile_id')
+            ->get()
+            ->groupBy('profile_id')
+            ->map(function($item) {
+                return $item->map(function ($item) {
+                    return strval($item->friend_id);
+                });
+            })
+            ->toArray();
+    }
 }
