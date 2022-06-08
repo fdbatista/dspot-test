@@ -6,7 +6,7 @@ use App\Models\Entities\Friend;
 use App\Repositories\_Core\Abstraction\AbstractRepository;
 use Illuminate\Support\Facades\DB;
 
-class FriendsRepository extends AbstractRepository
+class FriendRepository extends AbstractRepository
 {
     private string $tableName;
 

@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Repositories\FriendsRepository;
+use App\Repositories\FriendRepository;
 use App\Utils\GraphUtil;
 
 class FriendsService
 {
-    public function __construct(private FriendsRepository $friendsRepository)
+    public function __construct(private FriendRepository $friendsRepository)
     {
     }
 
