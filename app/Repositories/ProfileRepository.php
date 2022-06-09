@@ -8,7 +8,9 @@ use App\Repositories\_Core\Abstraction\AbstractRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use JetBrains\PhpStorm\Pure;
+use Illuminate\Support\Collection as IlluminateCollection;
 
 class ProfileRepository extends AbstractRepository
 {
@@ -51,5 +53,13 @@ class ProfileRepository extends AbstractRepository
                 return $item->first_name . ' ' . $item->last_name . ' - ' . $item->id;
             })
             ->toArray();
+    }
+
+    public function findAllPossibleConnections(): IlluminateCollection
+    {
+        return DB::table('profile', 'p')
+            ->crossJoin('profile as f', 'p.id', '<', 'f.id')
+            ->select(['p.id as profile_id', 'f.id as friend_id'])
+            ->get();
     }
 }
