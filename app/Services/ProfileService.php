@@ -27,7 +27,11 @@ class ProfileService
 
     public function findModels(array $ids): array
     {
-        return $this->profileRepository->findModels($ids);
+        return array_map(function ($id) {
+            $model = $this->profileRepository->find($id);
+
+            return strval($model);
+        }, $ids);
     }
 
     public function update(array $data)
