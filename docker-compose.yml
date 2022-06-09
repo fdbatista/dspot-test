@@ -6,6 +6,8 @@ services:
         container_name: dspot-api
         tty: true
         image: bitnami/laravel:9.1.8
+        ports:
+            - 8083:8000
         networks:
             - dspot-network
         volumes:
@@ -23,6 +25,8 @@ services:
         image: mariadb:10.5.2
         container_name: dspot-db
         restart: always
+        ports:
+            - 3308:3306
         networks:
             - dspot-network
         env_file:
@@ -36,23 +40,5 @@ services:
             MYSQL_USER: ${DB_USERNAME}
             MYSQL_PASSWORD: ${DB_PASSWORD}
 
-    dspot-pma:
-        image: phpmyadmin/phpmyadmin
-        container_name: dspot-pma
-        restart: always
-        env_file:
-            - .env
-        environment:
-            PMA_HOST: ${DB_HOST}
-            PMA_PORT: ${DB_PORT}
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-        volumes:
-            - ./docker/pma/php.conf/php.ini:/usr/local/etc/php/php.ini
-        depends_on:
-            - dspot-db
-        networks:
-            - dspot-network
-
 networks:
     dspot-network:
-        external: true
