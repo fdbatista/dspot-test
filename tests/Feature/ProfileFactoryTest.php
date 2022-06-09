@@ -57,7 +57,7 @@ class ProfileFactoryTest extends TestCase
         $cityRepository = $this->mockCityRepository();
 
         $service = new ProfileFactory($httpClient, $stateRepository, $cityRepository);
-        $response = $service->getFakeProfiles(1);
+        $response = $service->buildFakeProfiles(1);
 
         $this->assertEquals('6075 Church Street', $response[0]['address']);
         $this->assertEquals('Laura', $response[0]['first_name']);

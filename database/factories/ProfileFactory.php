@@ -20,7 +20,7 @@ class ProfileFactory
     {
     }
 
-    public function getFakeProfiles(int $profilesTotal): array
+    public function buildFakeProfiles(int $profilesTotal): array
     {
         $responsePayload = $this->getApiResponse($profilesTotal);
 
