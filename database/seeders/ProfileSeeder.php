@@ -26,7 +26,8 @@ class ProfileSeeder extends Seeder
         $this->runSeed($profilesTotal, $friendsTotal);
     }
 
-    private function raiseExceptionIfInvalidNumberOfConnections(int $profilesTotal, int $friendsTotal) {
+    private function raiseExceptionIfInvalidNumberOfConnections(int $profilesTotal, int $friendsTotal)
+    {
         $maxPossibleFriendsCombinations = MaxFriendsCalculatorUtil::findMaxCombinationsAvailable($profilesTotal);
 
         if ($friendsTotal > $maxPossibleFriendsCombinations) {
@@ -34,7 +35,8 @@ class ProfileSeeder extends Seeder
         }
     }
 
-    private function runSeed(int $profilesTotal, int $friendsTotal) {
+    private function runSeed(int $profilesTotal, int $friendsTotal)
+    {
         $profiles = $this->profileFactory->buildFakeProfiles($profilesTotal);
 
         DB::transaction(function () use ($profiles, $friendsTotal) {
@@ -43,14 +45,18 @@ class ProfileSeeder extends Seeder
         });
     }
 
-    private function createProfiles(array $profiles) {
+    private function createProfiles(array $profiles)
+    {
         $this->profileRepository->deleteAll();
         $this->profileRepository->insert($profiles);
     }
 
-    private function createRandomConnections(int $friendsTotal) {
+    private function createRandomConnections(int $friendsTotal)
+    {
         $allPossibleConnections = $this->profileRepository->findAllPossibleConnections();
-        $randomConnections = $allPossibleConnections->random($friendsTotal)->toArray();
+        $randomConnections = $allPossibleConnections
+            ->random($friendsTotal)
+            ->toArray();
 
         $this->friendRepository->insert($randomConnections);
     }
