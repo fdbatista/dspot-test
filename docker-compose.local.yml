@@ -20,6 +20,8 @@ services:
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - dspot-db
 
   dspot-db:
     image: mariadb:10.5.2
