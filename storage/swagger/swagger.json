@@ -1,0 +1,378 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel",
+        "description": "Documentation for the Application API",
+        "version": "9.1.8"
+    },
+    "basePath": "/api",
+    "servers": [
+        {
+            "url": "http://localhost:8083/api",
+            "description": "Laravel Server #1"
+        }
+    ],
+    "paths": {
+        "/v1/profile": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "deprecated": false,
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "(Unauthorized) Invalid or missing Access Token"
+                    }
+                },
+                "tags": [
+                    "v1"
+                ]
+            },
+            "put": {
+                "summary": "",
+                "description": "",
+                "deprecated": false,
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "(Unauthorized) Invalid or missing Access Token"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "phone",
+                                    "first_name",
+                                    "last_name",
+                                    "address",
+                                    "img",
+                                    "zip_code",
+                                    "city_id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    },
+                                    "zip_code": {
+                                        "type": "string"
+                                    },
+                                    "city_id": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "v1"
+                ]
+            },
+            "post": {
+                "summary": "",
+                "description": "",
+                "deprecated": false,
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "(Unauthorized) Invalid or missing Access Token"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "phone",
+                                    "first_name",
+                                    "last_name",
+                                    "address",
+                                    "img",
+                                    "zip_code",
+                                    "city_id"
+                                ],
+                                "properties": {
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    },
+                                    "zip_code": {
+                                        "type": "string"
+                                    },
+                                    "city_id": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "v1"
+                ]
+            }
+        },
+        "/v1/profile/{id}": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "deprecated": false,
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "(Unauthorized) Invalid or missing Access Token"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ]
+            }
+        },
+        "/v1/friends/{id}": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "deprecated": false,
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "(Unauthorized) Invalid or missing Access Token"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ]
+            }
+        },
+        "/v1/friends/path/{origin}/{destination}": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "deprecated": false,
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "(Unauthorized) Invalid or missing Access Token"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "origin",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "destination",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ]
+            }
+        }
+    },
+    "tags": [],
+    "components": {
+        "schemas": {
+            "City": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "title",
+                    "state_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "smallint",
+                        "example": 19412
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "state_id": {
+                        "type": "smallint",
+                        "example": 15715
+                    }
+                }
+            },
+            "Friend": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "profile_id",
+                    "friend_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1241112273
+                    },
+                    "profile_id": {
+                        "type": "smallint",
+                        "example": 28712
+                    },
+                    "friend_id": {
+                        "type": "smallint",
+                        "example": 13032
+                    }
+                }
+            },
+            "Profile": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "first_name",
+                    "last_name",
+                    "phone",
+                    "address",
+                    "zip_code",
+                    "is_available",
+                    "img",
+                    "city_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "smallint",
+                        "example": 27595
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "zip_code": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "is_available": {
+                        "type": "boolean",
+                        "default": "1",
+                        "example": false
+                    },
+                    "img": {
+                        "type": "text",
+                        "example": "a long text"
+                    },
+                    "city_id": {
+                        "type": "smallint",
+                        "example": 15807
+                    }
+                }
+            },
+            "State": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "title"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "smallint",
+                        "example": 29771
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "required": [],
+                "properties": []
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
