@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Profile
- * 
+ *
  * @property int $id
  * @property string $first_name
  * @property string $last_name
@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $is_available
  * @property string $img
  * @property int $city_id
- * 
+ *
  * @property City $city
  * @property Collection|Friend[] $friends
  *
@@ -58,4 +58,9 @@ class Profile extends Model
 	{
 		return $this->hasMany(Friend::class);
 	}
+
+    public function __toString()
+    {
+        return $this->first_name . ' ' . $this->last_name . ' - ' . $this->id;
+    }
 }
