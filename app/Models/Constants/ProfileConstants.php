@@ -14,7 +14,7 @@ class ProfileConstants
         'profile.phone',
         'profile.address',
         'city.title as city',
-        'state.code as state',
+        'state.title as state',
         'profile.zip_code',
         'profile.is_available',
     ];
