@@ -34,25 +34,5 @@ services:
             - DB_DATABASE=${DB_DATABASE}
             - DB_USERNAME=${DB_USERNAME}
             - DB_PASSWORD=${DB_PASSWORD}
-
-    dspot-db:
-        image: mariadb:10.5.2
-        container_name: dspot-db
-        restart: always
-        ports:
-            - 3308:3306
-        networks:
-            - dspot-network
-        env_file:
-            - ./.env
-        volumes:
-            - ./docker/db/data:/var/lib/mysql
-            - ./docker/db/conf/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
-        environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-            MYSQL_USER: ${DB_USERNAME}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-
-networks:
-    dspot-network:
+        depends_on:
+            - dspot-db
