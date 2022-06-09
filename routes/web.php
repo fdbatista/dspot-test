@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\MySwaggerController;
 use Illuminate\Support\Facades\Route;
+use Mezatsong\SwaggerDocs\Http\Controllers\SwaggerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('doc')->group(function () {
+    Route::get('/', [MySwaggerController::class, 'index']);
+    Route::get('json', [SwaggerController::class, 'documentation']);
 });
