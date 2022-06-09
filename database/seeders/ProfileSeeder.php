@@ -7,8 +7,8 @@ use App\Repositories\ProfileRepository;
 use App\Utils\MaxFriendsCalculatorUtil;
 use Database\Factories\ProfileFactory;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use OutOfRangeException;
 
 class ProfileSeeder extends Seeder
 {
@@ -30,9 +30,7 @@ class ProfileSeeder extends Seeder
     {
         $maxPossibleFriendsCombinations = MaxFriendsCalculatorUtil::findMaxCombinationsAvailable($profilesTotal);
 
-        if ($friendsTotal > $maxPossibleFriendsCombinations) {
-            throw new OutOfRangeException("$profilesTotal profiles cannot have more than $maxPossibleFriendsCombinations friends.");
-        }
+        abort_if($friendsTotal > $maxPossibleFriendsCombinations, Response::HTTP_BAD_REQUEST, "$profilesTotal profiles cannot have more than $maxPossibleFriendsCombinations friends.");
     }
 
     private function runSeed(int $profilesTotal, int $friendsTotal)
