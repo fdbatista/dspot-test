@@ -2,12 +2,28 @@ version: '3'
 
 services:
 
+    dspot-db:
+        image: bitnami/mariadb:10.5.8
+        container_name: dspot-db
+        ports:
+            - 33062:3306
+        env_file:
+            - .env
+        environment:
+            TZ: "Europe/Warsaw"
+            ALLOW_EMPTY_PASSWORD: "yes"
+            MARIADB_SKIP_TEST_DB: "yes"
+            MARIADB_DATABASE: ${DB_DATABASE}
+            MARIADB_USER: ${DB_USERNAME}
+            MARIADB_PASSWORD: ${DB_PASSWORD}
+
     dspot-api:
         container_name: dspot-api
+        restart: on-failure
         tty: true
         image: bitnami/laravel:9.1.8
-        networks:
-            - dspot-network
+        ports:
+            - 8083:8000
         volumes:
             - ./:/app
         env_file:
@@ -20,41 +36,3 @@ services:
             - DB_PASSWORD=${DB_PASSWORD}
         depends_on:
             - dspot-db
-
-    dspot-db:
-        image: mariadb:10.5.2
-        container_name: dspot-db
-        restart: always
-        networks:
-            - dspot-network
-        env_file:
-            - ./.env
-        volumes:
-            - ./docker/db/data:/var/lib/mysql
-            - ./docker/db/conf/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
-        environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-            MYSQL_USER: ${DB_USERNAME}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-
-    dspot-pma:
-        image: phpmyadmin/phpmyadmin
-        container_name: dspot-pma
-        restart: always
-        env_file:
-            - .env
-        environment:
-            PMA_HOST: ${DB_HOST}
-            PMA_PORT: ${DB_PORT}
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-        volumes:
-            - ./docker/pma/php.conf/php.ini:/usr/local/etc/php/php.ini
-        depends_on:
-            - dspot-db
-        networks:
-            - dspot-network
-
-networks:
-    dspot-network:
-        external: true

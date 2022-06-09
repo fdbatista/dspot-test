@@ -53,6 +53,7 @@ class ProfileSeeder extends Seeder
     {
         $allPossibleConnections = $this->profileRepository->findAllPossibleConnections();
         $randomConnections = $allPossibleConnections
+            ->shuffle()
             ->random($friendsTotal)
             ->toArray();
 
