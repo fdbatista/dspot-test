@@ -2,6 +2,21 @@ version: '3'
 
 services:
 
+    dspot-db:
+        image: bitnami/mariadb:10.5.8
+        container_name: dspot-db
+        ports:
+            - 33062:3306
+        env_file:
+            - .env
+        environment:
+            TZ: "Europe/Warsaw"
+            ALLOW_EMPTY_PASSWORD: "yes"
+            MARIADB_SKIP_TEST_DB: "yes"
+            MARIADB_DATABASE: ${DB_DATABASE}
+            MARIADB_USER: ${DB_USERNAME}
+            MARIADB_PASSWORD: ${DB_PASSWORD}
+
     dspot-api:
         container_name: dspot-api
         tty: true
