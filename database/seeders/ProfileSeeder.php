@@ -20,9 +20,21 @@ class ProfileSeeder extends Seeder
     {
         $users = $this->profileFactory->getFakeProfiles($profilesTotal);
 
-        DB::transaction(function () use ($users) {
-            $this->profileRepository->deleteAll();
-            $this->profileRepository->insert($users);
+        DB::transaction(function () use ($profiles, $friendsTotal) {
+            $this->createProfiles($profiles);
+            $this->createRandomConnections($friendsTotal);
         });
+    }
+
+    private function createProfiles(array $profiles) {
+        $this->profileRepository->deleteAll();
+        $this->profileRepository->insert($profiles);
+    }
+
+    private function createRandomConnections(int $friendsTotal) {
+        $allPossibleConnections = $this->profileRepository->findAllPossibleConnections();
+        $randomConnections = $allPossibleConnections->random($friendsTotal)->toArray();
+
+        $this->friendRepository->insert($randomConnections);
     }
 }
