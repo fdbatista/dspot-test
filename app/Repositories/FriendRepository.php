@@ -27,7 +27,7 @@ class FriendRepository extends AbstractRepository
             ->select(['profile_id as friend_id'])
             ->where('friend_id', $profileId);
 
-        $union = $queryForIdOnProfile->unionAll($queryForIdOnFriend);
+        $union = $queryForIdOnProfile->union($queryForIdOnFriend);
 
         return DB::table('profile')
             ->joinSub($union, 'c1', function ($join) {
@@ -48,7 +48,7 @@ class FriendRepository extends AbstractRepository
         $queryForIdOnFriend = DB::table($this->tableName)
             ->select(['friend_id as profile_id', 'profile_id as friend_id']);
 
-        return $queryForIdOnProfile->unionAll($queryForIdOnFriend)
+        return $queryForIdOnProfile->union($queryForIdOnFriend)
             ->orderBy('profile_id')
             ->get()
             ->groupBy('profile_id')
