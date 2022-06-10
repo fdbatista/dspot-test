@@ -15,7 +15,7 @@ class GetAllProfilesEndpointTest extends TestCase
             $mock->shouldReceive('all')->once()->andReturn(new Collection([['id' => 1]]));
         });
 
-        $response = $this->get('/api/v1/profile');
+        $response = $this->get('/api/v1/profiles');
 
         $response->assertJsonCount(1);
     }
