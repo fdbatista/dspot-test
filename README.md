@@ -8,7 +8,7 @@ No volumes were attached to the database container, so all information will be p
 
 For the sake of simplicity, the `.env.example` file comes with sensitive data already loaded to speed things up, so you don't need to adjust any value.
 
-A Swagger configuration was generated. If the default `8083` API port is to be changed, the `APP_URL` environment variable needs to be updated as well, and the container needs to be rebuilt.
+Swagger documentation is automatically generated, but if the default `8083` API port is to be changed, the `APP_URL` environment variable needs to be updated as well, and the API container needs to be rebuilt.
 
 A `PDOException` related to the SwaggerServiceProvider component will be thrown after running the `composer install` command, but dependencies will be correctly downloaded. I had two options: removing the Swagger generator and thus adding lots of ugly decorators and annotations to my controllers or learning to live in peace with this exception. I chose the second. Anyways, the `composer install` will be executed again in the next step from within the API container itself, just to make sure everything is ok. 
 
