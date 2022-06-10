@@ -2,20 +2,20 @@
 
 namespace App\Exceptions;
 
-use App\Models\Constants\ProfileConstants;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Throwable;
 
 trait ResponseHandler
 {
-    protected function success(mixed $data = ProfileConstants::SUCCESSFUL_OPERATION_MESSAGE): JsonResponse
+    protected function success(mixed $data, int $httpCode): JsonResponse
     {
         return response()
             ->json($data)
-            ->setStatusCode(200);
+            ->setStatusCode($httpCode);
     }
 
-    protected function error(Throwable $exception, int $httpCode = 400): JsonResponse
+    protected function error(Throwable $exception, int $httpCode = Response::HTTP_BAD_REQUEST): JsonResponse
     {
         return response()
             ->json($exception->getMessage())
