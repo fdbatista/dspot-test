@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Profile;
 
-use App\Models\Constants\ProfileConstants;
 use App\Models\Constants\ProfileErrors;
 use App\Repositories\CityRepository;
 use App\Repositories\ProfileRepository;
+use Illuminate\Http\Response;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
@@ -48,6 +48,6 @@ class UpdateProfileEndpointTest extends TestCase
             'city_id' => 1,
         ]);
 
-        $response->assertSeeText(ProfileConstants::SUCCESSFUL_OPERATION_MESSAGE);
+        $response->assertStatus(Response::HTTP_CREATED);
     }
 }

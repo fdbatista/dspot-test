@@ -3,6 +3,7 @@
 namespace Tests\Feature\Friends;
 
 use App\Repositories\FriendRepository;
+use Illuminate\Http\Response;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
@@ -14,8 +15,8 @@ class GetShortestPathEndpointTest extends TestCase
             $mock->shouldReceive('getFriendsConnections')->once()->andReturn([]);
         });
 
-        $response = $this->get('/api/v1/friends/path/1/3');
+        $response = $this->get('/api/v1/profiles/1/path/3');
 
-        $response->assertJson([]);
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Friends;
 
 use App\Repositories\FriendRepository;
+use Illuminate\Http\Response;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
@@ -14,8 +15,8 @@ class GetFriendsEndpointTest extends TestCase
             $mock->shouldReceive('findFriends')->once()->andReturn([]);
         });
 
-        $response = $this->get('/api/v1/friends/1');
+        $response = $this->get('/api/v1/profiles/1/friends');
 
-        $response->assertStatus(200);
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
     }
 }
