@@ -29,8 +29,9 @@ class ProfileSeeder extends Seeder
     private function raiseExceptionIfInvalidNumberOfConnections(int $profilesTotal, int $friendsTotal)
     {
         $maxPossibleFriendsCombinations = MaxFriendsCalculatorUtil::findMaxCombinationsAvailable($profilesTotal);
+        $error = "$profilesTotal profiles cannot have more than $maxPossibleFriendsCombinations friends.";
 
-        abort_if($friendsTotal > $maxPossibleFriendsCombinations, Response::HTTP_BAD_REQUEST, "$profilesTotal profiles cannot have more than $maxPossibleFriendsCombinations friends.");
+        abort_if($friendsTotal > $maxPossibleFriendsCombinations, Response::HTTP_BAD_REQUEST, $error);
     }
 
     private function runSeed(int $profilesTotal, int $friendsTotal)
