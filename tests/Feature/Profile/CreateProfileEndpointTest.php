@@ -3,6 +3,7 @@
 namespace Tests\Feature\Profile;
 
 use App\Models\Constants\ProfileConstants;
+use App\Models\Constants\ProfileErrors;
 use App\Repositories\CityRepository;
 use App\Repositories\ProfileRepository;
 use Mockery\MockInterface;
@@ -12,9 +13,9 @@ class CreateProfileEndpointTest extends TestCase
 {
     public function test_create_profile_returns_validation_error()
     {
-        $response = $this->post('/api/v1/profile', []);
+        $response = $this->post('/api/v1/profiles', []);
 
-        $response->assertSeeText('required');
+        $response->assertSeeText(ProfileErrors::INVALID_CITY);
     }
 
     public function test_create_profile_returns_successful_message()
@@ -24,10 +25,11 @@ class CreateProfileEndpointTest extends TestCase
         });
 
         $this->mock(ProfileRepository::class, function (MockInterface $mock) {
+            $mock->shouldReceive('isNotUnique')->once()->andReturn(false);
             $mock->shouldReceive('insert')->once();
         });
 
-        $response = $this->post('/api/v1/profile', [
+        $response = $this->post('/api/v1/profiles', [
             'phone' => '0018946545',
             'first_name' => 'John',
             'last_name' => 'Doe',
