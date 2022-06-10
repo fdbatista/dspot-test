@@ -1,6 +1,8 @@
 ## DSpot Technical Test
 This exercise includes a running configuration for <a target="_blank" href="https://docs.docker.com/engine/install">Docker</a>  and <a target="_blank" href="https://docs.docker.com/compose/install">Docker Compose</a>.
 
+The requested Google Document with technical explanations can be found <a target="_blank" href="https://docs.google.com/document/d/1qjjYBI6knKeeSVSutBovHN5XEnZEBcDs3qX886T7zbw/edit?usp=sharing">here</a>.
+
 ## Important notes
 The backend container may start earlier than the database one, generating a temporary startup error. Docker will restart it until the database is ready to accept connections, so just wait a few seconds, and you should be good to go.
 
