@@ -7,18 +7,22 @@ use App\Http\Middleware\EnsureProfileIsUnique;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
-    Route::prefix('profiles')->controller(ProfileController::class)->group(function () {
-        Route::get('/', 'all');
-        Route::get('/{id}', 'find');
+    Route::prefix('profiles')->group(function () {
 
-        Route::middleware([EnsureCityIsValid::class, EnsureProfileIsUnique::class])->group(function () {
-            Route::put('/', 'update');
-            Route::post('/', 'create');
+        Route::controller(ProfileController::class)->group(function () {
+            Route::get('/', 'all');
+
+            Route::middleware([EnsureCityIsValid::class, EnsureProfileIsUnique::class])->group(function () {
+                Route::post('/', 'create');
+                Route::put('/', 'update');
+            });
+
+            Route::get('/{id}', 'find');
         });
-    });
 
-    Route::prefix('friends')->controller(FriendsController::class)->group(function () {
-        Route::get('/{id}', 'findFriends');
-        Route::get('/path/{origin}/{destination}', 'findShorterPath');
+        Route::controller(FriendsController::class)->group(function () {
+            Route::get('/{profileId}/friends', 'findFriends');
+            Route::get('/{profileId}/path/{friendId}', 'findShorterPath');
+        });
     });
 });
