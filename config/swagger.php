@@ -70,11 +70,7 @@ return [
      * Append additional data to ALL routes
      */
     'append'                    =>  [
-        'responses'             =>  [
-            '401'               =>  [
-                'description'   =>  '(Unauthorized) Invalid or missing Access Token'
-            ]
-        ]
+        'responses'             =>  []
     ],
 
     /**
