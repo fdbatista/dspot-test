@@ -20,3 +20,4 @@ yarn-error.log
 public/uploads
 docker/db/data
 .editorconfig
+.styleci.yml
