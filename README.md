@@ -14,12 +14,27 @@ An exception related to the Swagger generator will be thrown after running the `
 
 ## Steps
 - Create a local copy of this repository by running `git clone https://github.com/fdbatista/dspot-test.git`.
-- Make a copy of `.env.example` and name it `.env`. You may adjust any parameters if you wish.
+- Make a copy of `.env.example` and name it `.env`.
 - Run `docker run --rm --interactive --tty --volume $PWD:/app composer:latest install` to download all required dependencies.
 - If the previous step throws an exception at the end, run `docker exec dspot-api composer install` to make sure all dependencies were downloaded correctly.
 - Start the Docker containers with the command `docker-compose up -d`. You may pass additional parameters to the CLI by specifying `--build` and `--force-recreate` to make sure the containers get built with the latest version of the code.
-- Navigate to `http://localhost:8083`.
+- Apply database migrations: `docker exec dspot-api php artisan migrate`.
+- Run profiles and connections seeder script by executing `docker exec dspot-api php artisan profiles:seed {profilesTotal} {friendsTotal}`. Replace `{friendsTotal}` and `{friendsTotal}` by the respective values you'd like.
+- Browse Swagger documentation available on `http://localhost:8083/doc` to get the list of available endpoints.
+
+## Unix-like OS commands
+
+```shell
+git clone https://github.com/fdbatista/dspot-test.git
+cp .env.example .env
+docker run --rm --interactive --tty --volume $PWD:/app composer:latest install
+docker exec dspot-api composer install
+docker-compose up -d
+docker exec dspot-api php artisan migrate
+docker exec dspot-api php artisan profiles:seed 10 15
+curl http://localhost:8083
+```
 
 ## What would be next?
-- Implement CI/CD with GitHub Actions.
 - Paginate requests to RandomUser.me API after a given threshold to prevent errors.
+- Implement CI/CD with GitHub Actions.
