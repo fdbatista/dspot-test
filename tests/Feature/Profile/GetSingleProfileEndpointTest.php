@@ -15,7 +15,7 @@ class GetSingleProfileEndpointTest extends TestCase
             $mock->shouldReceive('find')->once()->andReturn(new Profile(['id' => 1]));
         });
 
-        $response = $this->get('/api/v1/profile/1');
+        $response = $this->get('/api/v1/profiles/1');
 
         $response->assertStatus(200);
     }
