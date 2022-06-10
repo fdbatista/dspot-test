@@ -19,7 +19,7 @@ A `PDOException` related to the SwaggerServiceProvider component will be thrown 
 - Start the Docker containers with the command `docker-compose up -d`. You may pass additional parameters to the CLI by specifying `--build` and `--force-recreate` to make sure the containers get built with the latest version of the code.
 - Run `docker exec dspot-api composer install` to make sure all dependencies were downloaded correctly.
 - Apply database migrations: `docker exec dspot-api php artisan migrate`.
-- Run profiles and connections seeder script by executing `docker exec dspot-api php artisan profiles:seed {profilesTotal} {friendsTotal}`. Replace `{friendsTotal}` and `{friendsTotal}` by the respective values you'd like.
+- Run profiles and connections seeder script by executing `docker exec dspot-api php artisan profiles:seed {profilesTotal} {friendsTotal}`. Replace `{profilesTotal}` and `{friendsTotal}` by the respective numbers you'd prefer.
 - Run `docker exec dspot-api php artisan test` to execute tests.
 
 Once finished, browse Swagger documentation available on `http://localhost:8083/doc` to get the list of available endpoints.
