@@ -2,14 +2,19 @@
 
 use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\EnsureCityIsValid;
+use App\Http\Middleware\EnsureProfileIsUnique;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::prefix('profile')->controller(ProfileController::class)->group(function () {
         Route::get('/', 'all');
         Route::get('/{id}', 'find');
-        Route::put('/', 'update');
-        Route::post('/', 'create');
+
+        Route::middleware([EnsureCityIsValid::class, EnsureProfileIsUnique::class])->group(function () {
+            Route::put('/', 'update');
+            Route::post('/', 'create');
+        });
     });
 
     Route::prefix('friends')->controller(FriendsController::class)->group(function () {
