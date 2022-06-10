@@ -45,6 +45,14 @@ abstract class AbstractRepository implements RepositoryInterface
         return $this->model::query()->where($criteria)->exists();
     }
 
+    public function isNotUnique(int $id, array $criteria): bool
+    {
+        return $this->model::query()
+            ->where($criteria)
+            ->whereNot('id', $id)
+            ->exists();
+    }
+
     public function updateOrCreate(array $compareAttribs, array $fillAttribs): Model|Builder
     {
         return $this->model::query()->updateOrCreate($compareAttribs, $fillAttribs);
