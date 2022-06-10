@@ -13,6 +13,10 @@ class CreateProfileEndpointTest extends TestCase
 {
     public function test_create_profile_returns_validation_error()
     {
+        $this->mock(CityRepository::class, function (MockInterface $mock) {
+            $mock->shouldReceive('exists')->once()->andReturn(false);
+        });
+
         $response = $this->post('/api/v1/profiles', []);
 
         $response->assertSeeText(ProfileErrors::INVALID_CITY);
