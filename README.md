@@ -5,7 +5,7 @@ This exercise was designed to be executed using Docker.
 
 For the sake of simplicity, no volumes were attached to the database container, so all information will be persisted while the container is up and running.
 
-A sample Swagger configuration was generated. If the default `8083` API port is to be changed, Swagger configuration needs to be updated by running `php artisan swagger:generate`.
+A Swagger configuration was generated. If the default `8083` API port is to be changed, the `APP_URL` environment variable needs to be updated as well, the container needs to be rebuilt, and Swagger needs to be updated by running `php artisan swagger:generate`.
 
 The backend container may start earlier than the database one, generating a temporary startup error. Docker will restart it until the database is ready to accept connections, so just wait a few seconds, and you should be good to go. 
 
