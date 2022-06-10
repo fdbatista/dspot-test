@@ -15,16 +15,16 @@ class FriendsController extends Controller
     {
     }
 
-    public function findFriends(int $profileId): JsonResponse
+    public function findFriends(int $id): JsonResponse
     {
-        $data = $this->friendsService->findFriends($profileId);
+        $data = $this->friendsService->findFriends($id);
 
         return $this->returnData($data);
     }
 
-    public function findShorterPath(int $profileId, int $friendId): JsonResponse
+    public function findShorterPath(int $id, int $friendId): JsonResponse
     {
-        $hops = $this->friendsService->findShorterPath($profileId, $friendId);
+        $hops = $this->friendsService->findShorterPath($id, $friendId);
         $data = $this->profileService->findModels($hops);
 
         return $this->returnData($data);

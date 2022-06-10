@@ -21,8 +21,8 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::controller(FriendsController::class)->group(function () {
-            Route::get('/{profileId}/friends', 'findFriends');
-            Route::get('/{profileId}/path/{friendId}', 'findShorterPath');
+            Route::get('/{id}/friends', 'findFriends');
+            Route::get('/{id}/path/{friendId}', 'findShorterPath');
         });
     });
 });
