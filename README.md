@@ -1,5 +1,5 @@
 ## DSpot Technical Test
-This exercise was designed to be executed using Docker.
+This exercise includes a running configuration for <a href="https://docs.docker.com/engine/install">Docker</a>  and <a href="https://docs.docker.com/compose/install">Docker Compose</a>.
 
 ## Important notes
 
