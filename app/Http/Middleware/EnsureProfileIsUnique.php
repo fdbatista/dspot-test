@@ -16,16 +16,10 @@ class EnsureProfileIsUnique
 
     public function handle(Request $request, Closure $next)
     {
-        $id = $request->get('id', 0);
-
-        $uniqueAttribs = [
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'phone' => $request->get('phone'),
-        ];
+        $id = $request->input('id', 0);
+        $uniqueAttribs = $request->all(['first_name', 'last_name', 'phone']);
 
         $exists = $this->profileRepository->isNotUnique($id, $uniqueAttribs);
-
         abort_if($exists, Response::HTTP_BAD_REQUEST, ProfileErrors::EXISTING_MODEL);
 
         return $next($request);
