@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::prefix('profiles')->group(function () {
-
         Route::controller(ProfileController::class)->group(function () {
             Route::get('/', 'all');
 
