@@ -38,10 +38,15 @@ class ProfileSeeder extends Seeder
     {
         $profiles = $this->profileFactory->buildFakeProfiles($profilesTotal);
 
-        DB::transaction(function () use ($profiles, $friendsTotal) {
-            $this->createProfiles($profiles);
-            $this->createRandomConnections($friendsTotal);
-        });
+        if (empty($profiles)) {
+            echo "Empty response received from RandomUser API.\n";
+        }
+        else {
+            DB::transaction(function () use ($profiles, $friendsTotal) {
+                $this->createProfiles($profiles);
+                $this->createRandomConnections($friendsTotal);
+            });
+        }
     }
 
     private function createProfiles(array $profiles)
