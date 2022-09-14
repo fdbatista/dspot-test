@@ -11,14 +11,14 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'numeric|required',
+            'id' => 'required|numeric',
             'phone' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'address' => 'required',
             'img' => 'required',
             'zip_code' => 'required',
-            'city_id' => ['required', 'numeric'],
+            'city_id' => 'required|numeric',
         ];
     }
 }
