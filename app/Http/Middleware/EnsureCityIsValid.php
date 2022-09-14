@@ -16,7 +16,7 @@ class EnsureCityIsValid
 
     public function handle(Request $request, Closure $next)
     {
-        $cityId = $request->get('city_id', 0);
+        $cityId = $request->input('city_id', 0);
         $cityExists = $this->cityRepository->exists(['id' => $cityId]);
 
         abort_unless($cityExists, Response::HTTP_BAD_REQUEST, ProfileErrors::INVALID_CITY);
