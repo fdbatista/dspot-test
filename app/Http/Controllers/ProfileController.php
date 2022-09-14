@@ -11,11 +11,8 @@ use Illuminate\Http\Response;
 
 class ProfileController extends Controller
 {
-    private ProfileService $profileService;
-
-    public function __construct(ProfileService $profileService)
+    public function __construct(private ProfileService $profileService)
     {
-        $this->profileService = $profileService;
     }
 
     public function all(): JsonResponse
