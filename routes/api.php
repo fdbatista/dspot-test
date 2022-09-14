@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\FriendsController;
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EnsureCityIsValid;
 use App\Http\Middleware\EnsureProfileIsUnique;
@@ -19,7 +19,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/{id}', 'find');
         });
 
-        Route::controller(FriendsController::class)->group(function () {
+        Route::controller(FriendController::class)->group(function () {
             Route::get('/{id}/friends', 'findFriends');
             Route::get('/{id}/path/{friendId}', 'findShorterPath');
         });

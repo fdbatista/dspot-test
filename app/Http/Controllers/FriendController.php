@@ -6,7 +6,7 @@ use App\Services\FriendService;
 use App\Services\ProfileService;
 use Illuminate\Http\JsonResponse;
 
-class FriendsController extends Controller
+class FriendController extends Controller
 {
     public function __construct(
         private FriendService $friendService,
