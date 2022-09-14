@@ -8,8 +8,7 @@ use Illuminate\Console\Command;
 class ProfileSeederRunnerCommand extends Command
 {
     protected $signature = 'profiles:seed {profilesTotal} {friendsTotal}';
-
-    protected $description = 'Command description';
+    protected $description = 'Creates random profiles based on user input.';
 
     public function handle(ProfileSeeder $seeder)
     {
