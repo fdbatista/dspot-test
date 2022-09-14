@@ -8,11 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class AbstractRepository implements RepositoryInterface
 {
-    protected Model $model;
-
-    public function __construct(Model $model)
+    public function __construct(protected Model $model)
     {
-        $this->model = $model;
     }
 
     public function all(): Collection
