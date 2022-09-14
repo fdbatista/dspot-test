@@ -1,5 +1,8 @@
 <?php
 
+use Mezatsong\SwaggerDocs\Responses\SchemaBuilders\LaravelPaginateSchemaBuilder;
+use Mezatsong\SwaggerDocs\Responses\SchemaBuilders\LaravelSimplePaginateSchemaBuilder;
+
 return [
 
     /**
@@ -162,8 +165,8 @@ return [
      * Note that Schema builder must implement Mezatsong\SwaggerDocs\Responses\SchemaBuilder
      */
     'schema_builders'            => [
-        'P' => \Mezatsong\SwaggerDocs\Responses\SchemaBuilders\LaravelPaginateSchemaBuilder::class,
-        'SP' => \Mezatsong\SwaggerDocs\Responses\SchemaBuilders\LaravelSimplePaginateSchemaBuilder::class,
+        'P' => LaravelPaginateSchemaBuilder::class,
+        'SP' => LaravelSimplePaginateSchemaBuilder::class,
     ]
 
 ];
