@@ -8,7 +8,8 @@ use Illuminate\Http\JsonResponse;
 
 class FriendController extends Controller
 {
-    public function __construct(
+    public function __construct
+    (
         private FriendService $friendService,
         private ProfileService $profileService,
     )
