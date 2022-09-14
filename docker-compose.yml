@@ -5,8 +5,6 @@ services:
   dspot-db:
     image: bitnami/mariadb:10.5.8
     container_name: dspot-db
-    ports:
-      - 33062:3306
     env_file:
       - .env
     environment:
@@ -24,7 +22,7 @@ services:
     tty: true
     image: bitnami/laravel:9.1.8
     ports:
-      - 8083:8000
+      - 8082:8000
     volumes:
       - ./:/app
     env_file:
@@ -37,3 +35,22 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - dspot-db
+
+  dspot-pma:
+    image: phpmyadmin/phpmyadmin:5.2.0
+    container_name: dspot-pma
+    ports:
+      - 8083:80
+    env_file:
+      - .env
+    environment:
+      PMA_HOST: ${DB_HOST}
+      PMA_PORT: ${DB_PORT}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    depends_on:
+      - dspot-db
+
+  dspot-redis:
+    image: redis:7.0.3-alpine
+    container_name: dspot-redis
+    restart: always
