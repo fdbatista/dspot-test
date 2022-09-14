@@ -43,9 +43,11 @@ class ProfileController extends Controller
     public function create(ProfileCreateRequest $request): JsonResponse
     {
         $data = $request->all(['phone', 'first_name', 'last_name', 'address', 'img', 'zip_code', 'city_id']);
-
         $this->profileService->create($data);
 
-        return $this->success(ProfileConstants::SUCCESSFUL_OPERATION_MESSAGE, Response::HTTP_CREATED);
+        return $this->success(
+            ProfileConstants::SUCCESSFUL_OPERATION_MESSAGE,
+            Response::HTTP_CREATED
+        );
     }
 }
