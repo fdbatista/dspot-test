@@ -8,11 +8,8 @@ use Illuminate\Support\Collection;
 
 class ProfileService
 {
-    private ProfileRepository $profileRepository;
-
-    public function __construct(ProfileRepository $profileRepository)
+    public function __construct(private ProfileRepository $profileRepository)
     {
-        $this->profileRepository = $profileRepository;
     }
 
     public function all(): Collection
