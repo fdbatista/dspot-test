@@ -7,13 +7,10 @@ use Illuminate\Contracts\Validation\Rule;
 
 class IsValidCity implements Rule
 {
-    public ?int $cityId;
-    private CityRepository $cityRepository;
+    private const MESSAGE = 'City ID needs to be valid.';
 
-    public function __construct(?int $cityId, CityRepository $cityRepository)
+    public function __construct(public ?int $cityId, private CityRepository $cityRepository)
     {
-        $this->cityId = $cityId;
-        $this->cityRepository = $cityRepository;
     }
 
     public function passes($attribute, $value): bool
@@ -23,6 +20,6 @@ class IsValidCity implements Rule
 
     public function message(): string
     {
-        return 'City ID needs to be valid.';
+        return self::MESSAGE;
     }
 }
